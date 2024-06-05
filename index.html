@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const getAJAX = () => {
+        const xhr = new XMLHttpRequest();
+        console.dir("데이터 받기 전 조회 :", +xhr);
+        xhr.open(
+          "GET",
+          "http://apis.data.go.kr/6300000/eventDataService/eventDataListJson?serviceKey=HV8E%2BTY8D2sM0K0m4ySRar%2F5gcEogz%2FBFEg%2BWr5P0t7m67j5Mg6xuAy1wGLmzhNFVsgSQ%2BwjmzOshIxLiknILw%3D%3D&numOfRows=10&pageNo=1",
+          true
+        );
+
+        xhr.addEventListener("load", () => {
+          if (xhr.status === 200) {
+            console.log("데이터를 받은 후 조회");
+            console.dir(xhr);
+
+            const result = JSON.parse(xhr.responseText);
+
+            console.dir(result);
+
+            const testAJAX = result.results;
+            console.dir(testAJAX);
+          }
+        });
+        xhr.send();
+      };
+
+      getAJAX();
+    </script>
+  </body>
+</html>
